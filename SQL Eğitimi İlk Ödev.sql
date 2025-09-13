@@ -2,91 +2,91 @@
 
 CREATE TABLE Books (
     book_id INT PRIMARY KEY,             
-    title NVARCHAR(255) NOT NULL,       
-    author NVARCHAR(200) NOT NULL,      
+    title NVARCHAR(50) NOT NULL,       
+    author NVARCHAR(50) NOT NULL,      
     genre NVARCHAR(50),                  
     price DECIMAL(10,2) CHECK (price >= 0),  
     stock INT CHECK (stock >= 0),            
-    published_year INT CHECK (published_year BETWEEN 1900 AND 2026),
-    added_at DATE
+    published_year INT CHECK (published_year BETWEEN 1900 AND 2025),
+    added_at DATE NOT NULL
 );
 
 
 INSERT INTO Books (book_id, title, author, genre, price, stock, published_year, added_at)
 VALUES
-(1, 'Kayýp Zamanýn Ýzinde', 'M. Proust', 'roman', 129.90, 25, 1913, '2025-08-20'),
-(2, 'Simyacý', 'P. Coelho', 'roman', 89.50, 40, 1988, '2025-08-21'),
+(1, 'KayÄ±p ZamanÄ±n Ä°zinde', 'M. Proust', 'roman', 129.90, 25, 1913, '2025-08-20'),
+(2, 'SimyacÄ±', 'P. Coelho', 'roman', 89.50, 40, 1988, '2025-08-21'),
 (3, 'Sapiens', 'Y. N. Harari', 'tarih', 159.00, 18, 2011, '2025-08-25'),
-(4, 'Ýnce Memed', 'Y. Kemal', 'roman', 99.90, 12, 1955, '2025-08-22'),
-(5, 'Körlük', 'J. Saramago', 'roman', 119.00, 7, 1995, '2025-08-28'),
+(4, 'Ä°nce Memed', 'Y. Kemal', 'roman', 99.90, 12, 1955, '2025-08-22'),
+(5, 'KÃ¶rlÃ¼k', 'J. Saramago', 'roman', 119.00, 7, 1995, '2025-08-28'),
 (6, 'Dune', 'F. Herbert', 'bilim', 149.00, 30, 1965, '2025-09-01'),
-(7, 'Hayvan Çiftliði', 'G. Orwell', 'roman', 79.90, 55, 1945, '2025-08-23'),
+(7, 'Hayvan Ã‡iftliÄŸi', 'G. Orwell', 'roman', 79.90, 55, 1945, '2025-08-23'),
 (8, '1984', 'G. Orwell', 'roman', 99.00, 35, 1949, '2025-08-24'),
-(9, 'Nutuk', 'M. K. Atatürk', 'tarih', 139.00, 20, 1927, '2025-08-27'),
-(10, 'Küçük Prens', 'A. de Saint-Exupéry', 'çocuk', 69.90, 80, 1943, '2025-08-26'),
-(11, 'Baþlangýç', 'D. Brown', 'roman', 109.00, 22, 2017, '2025-09-02'),
-(12, 'Atomik Alýþkanlýklar', 'J. Clear', 'kiþisel geliþim', 129.00, 28, 2018, '2025-09-03'),
-(13, 'Zamanýn Kýsa Tarihi', 'S. Hawking', 'bilim', 119.50, 16, 1988, '2025-08-29'),
-(14, 'Þeker Portakalý', 'J. M. de Vasconcelos', 'roman', 84.90, 45, 1968, '2025-08-30'),
-(15, 'Bir Ýdam Mahkûmunun Son Günü', 'V. Hugo', 'roman', 74.90, 26, 1829, '2025-08-31');
+(9, 'Nutuk', 'M. K. AtatÃ¼rk', 'tarih', 139.00, 20, 1927, '2025-08-27'),
+(10, 'KÃ¼Ã§Ã¼k Prens', 'A. de Saint-ExupÃ©ry', 'Ã§ocuk', 69.90, 80, 1943, '2025-08-26'),
+(11, 'BaÅŸlangÄ±Ã§', 'D. Brown', 'roman', 109.00, 22, 2017, '2025-09-02'),
+(12, 'Atomik AlÄ±ÅŸkanlÄ±klar', 'J. Clear', 'kiÅŸisel geliÅŸim', 129.00, 28, 2018, '2025-09-03'),
+(13, 'ZamanÄ±n KÄ±sa Tarihi', 'S. Hawking', 'bilim', 119.50, 16, 1988, '2025-08-29'),
+(14, 'Åžeker PortakalÄ±', 'J. M. de Vasconcelos', 'roman', 84.90, 45, 1968, '2025-08-30'),
+(15, 'Bir Ä°dam MahkÃ»munun Son GÃ¼nÃ¼', 'V. Hugo', 'roman', 74.90, 26, 1829, '2025-08-31');
 
 
 
 
--- 1. Tüm kitaplarýn title, author, price alanlarýný fiyatý artan þekilde sýralayarak listeleyin.
+-- 1. TÃ¼m kitaplarÄ±n title, author, price alanlarÄ±nÄ± fiyatÄ± artan ÅŸekilde sÄ±ralayarak listeleyin.
 
 SELECT title, author, price 
 FROM books
 ORDER BY price;
 
--- 2. Türü 'roman' olan kitaplarý A?Z title sýrasýyla gösterin.
+-- 2. TÃ¼rÃ¼ 'roman' olan kitaplarÄ± A?Z title sÄ±rasÄ±yla gÃ¶sterin.
 
 SELECT title,genre,author FROM books
 WHERE genre = 'Roman'
 ORDER BY title;
 
--- 3. Fiyatý 80 ile 120 (dahil) arasýndaki kitaplarý listeleyin (BETWEEN).
+-- 3. FiyatÄ± 80 ile 120 (dahil) arasÄ±ndaki kitaplarÄ± listeleyin (BETWEEN).
 
 SELECT * FROM books
 WHERE price BETWEEN 80 AND 120;
 
--- 4. Stok adedi 20’den az olan kitaplarý bulun (title, stock).
+-- 4. Stok adedi 20â€™den az olan kitaplarÄ± bulun (title, stock).
 
 SELECT title, stock 
 FROM books
 WHERE stock < 20;
 
--- 5. title içinde 'zaman' geçen kitaplarý LIKE ile filtreleyin (büyük/küçük harf durumunu not edin).
+-- 5. title iÃ§inde 'zaman' geÃ§en kitaplarÄ± LIKE ile filtreleyin (bÃ¼yÃ¼k/kÃ¼Ã§Ã¼k harf durumunu not edin).
 
 SELECT * FROM books
 WHERE title LIKE '%zaman%';
 
--- 6. genre deðeri 'roman' veya 'bilim' olanlarý IN ile listeleyin.
+-- 6. genre deÄŸeri 'roman' veya 'bilim' olanlarÄ± IN ile listeleyin.
 
 SELECT title, author, genre
 FROM books
 WHERE genre IN ('Roman','Bilim');
 
--- 7. published_year deðeri 2000 ve sonrasý olan kitaplarý, en yeni yýldan eskiye doðru sýralayýn.
+-- 7. published_year deÄŸeri 2000 ve sonrasÄ± olan kitaplarÄ±, en yeni yÄ±ldan eskiye doÄŸru sÄ±ralayÄ±n.
 
 SELECT title, author, published_year
 FROM books
 WHERE published_year >= 2000
 ORDER BY published_year DESC;
 
--- 8. Son 15 gün içinde eklenen kitaplarý bulun (added_at tarihine göre).
+-- 8. Son 15 gÃ¼n iÃ§inde eklenen kitaplarÄ± bulun (added_at tarihine gÃ¶re).
 
 SELECT title, author, added_at
 FROM books
 WHERE added_at >= DATEADD(day, - 15, GETDATE());
 
--- 9. En pahalý 5 kitabý price azalan sýrada listeleyin (LIMIT 5).
+-- 9. En pahalÄ± 5 kitabÄ± price azalan sÄ±rada listeleyin (LIMIT 5).
 
 SELECT TOP 5 title, author, price
 FROM books
 ORDER BY price DESC
 
--- 10. Stok adedi 30 ile 60 arasýnda olan kitaplarý price artan þekilde sýralayýn.
+-- 10. Stok adedi 30 ile 60 arasÄ±nda olan kitaplarÄ± price artan ÅŸekilde sÄ±ralayÄ±n.
 
 SELECT title, author, price, stock
 FROM books
